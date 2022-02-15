@@ -1,0 +1,134 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="favicon" href="#">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ionic Only Tordis Eksempel</title>
+
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
+    <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css"/>
+</head>
+<body>
+    <!-- Din Ionic kode indsættes her -->
+<ion-app>
+    <ion-menu side="start" content-id="main-content">
+        <ion-header>
+          <ion-toolbar translucent>
+            <ion-title>Menu</ion-title>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content>
+          <ion-list>
+            <ion-item>
+              <ion-icon name="mail" slot="start"></ion-icon>
+              <ion-label>Inbox</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-icon name="paper-plane" slot="start"></ion-icon>
+              <ion-label>Outbox</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-icon name="heart" slot="start"></ion-icon>
+              <ion-label>Favorites</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-icon name="archive" slot="start"></ion-icon>
+              <ion-label>Archived</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-icon name="trash" slot="start"></ion-icon>
+              <ion-label>Trash</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-icon name="warning" slot="start"></ion-icon>
+              <ion-label>Spam</ion-label>
+            </ion-item>
+          </ion-list>
+        </ion-content>
+      </ion-menu>
+      <div class="ion-page" id="main-content">
+          <ion-header>
+              <ion-toolbar color="tertiary">
+                  <ion-title>Hent en hund</ion-title>
+                  <ion-buttons slot="start">
+                      <ion-menu-button></ion-menu-button>
+                    </ion-buttons>
+                </ion-toolbar>            
+            </ion-header>
+            <ion-content>
+                <ion-card id="img-wrapper">
+                    <ion-item>
+                        <ion-button onclick="location.reload()">Vil du se en anden hund?</ion-button>
+                    </ion-item>
+                    <img id="img">
+                </ion-card>
+                <ion-card>
+                    <ion-card-header>
+                        <ion-card-title>En spændende artikel</ion-card-title>
+                    </ion-card-header>
+                    <ion-card-content>
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Expedita inventore quibusdam voluptatem maxime tempore nesciunt recusandae, laboriosam repellat ipsum voluptates, earum vero nobis quos exercitationem et. Quas veniam eligendi sapiente?
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis quibusdam laudantium et aspernatur vitae officiis libero aut, nemo officia vero itaque dolorum cupiditate. Consequuntur possimus, molestias officia illum molestiae doloremque?
+                    </ion-card-content>
+                    <ion-card-header>
+                        <ion-card-title>En anden spændende artikel</ion-card-title>
+                    </ion-card-header>
+                    <ion-card-content>
+                        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsam totam provident inventore! Nemo quibusdam eum neque ab perspiciatis labore! Ullam quam ad libero eligendi dolore ipsum in architecto laboriosam voluptatibus.
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore a earum tenetur, eligendi sequi natus quam veritatis tempora explicabo. Non ratione dolorum ducimus vitae reiciendis fugit, quia animi aliquam placeat!
+                    </ion-card-content>
+                </ion-card>
+               
+               
+                <form>
+                    <ion-item>
+                        <ion-label position="stacked">Brugernavn</ion-label>
+                        <ion-input placeholder="Indtast dit brugernavn"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label position="stacked">Adgangskode</ion-label>
+                        <ion-input placeholder="Indtast din adgangskode"></ion-input>
+                    </ion-item>
+                    <ion-button>Login</ion-button>
+                    <ion-button type="reset">Reset</ion-button>
+                </form>
+            </ion-content>
+        
+        
+        </div>
+        
+
+</ion-app>
+
+<script>
+    
+    fetch('https://dog.ceo/api/breeds/image/random')
+    .then(response => response.json()
+    )
+    .then((data) =>{
+        console.log(data);
+        let dogData = data;
+        dogImg = document.querySelector('#img')
+        dogImg.setAttribute('src', `${dogData.message}`)
+        dogImg.setAttribute('alt', 'dog')
+        if(data.status == 'error'){
+            const imgWrapper = document.querySelector('#img-wrapper')
+            imgWrapper.innerHTML = "";
+            const idiot = document.createElement('p')
+            idiot.innerText = 'you idiot!! y u no fetch right?'
+            imgWrapper.append(idiot)
+
+        }
+    })
+    .catch((err) => {
+        console.error(`der er en fejl: ${err}`);
+        const imgWrapper = document.querySelector('#img-wrapper')
+        const idiot = document.createElement('p')
+        idiot.innerText = 'you idiot!! mistakes made!!'
+        imgWrapper.append(idiot)
+    })
+</script>
+</body>
+</html>
