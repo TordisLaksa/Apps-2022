@@ -59,6 +59,12 @@
             </ion-header>
             <ion-content>
                 <ion-card id="img-wrapper">
+                  <ion-card-header>
+                    <ion-card-title>Hent en hund</ion-card-title>
+                  </ion-card-header>
+                  <ion-card-content>
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Expedita inventore quibusdam voluptatem maxime tempore nesciunt recusandae, laboriosam repellat ipsum voluptates, earum vero nobis quos exercitationem et. Quas veniam eligendi sapiente?
+                </ion-card-content>
                     <ion-item>
                         <ion-button onclick="location.reload()">Vil du se en anden hund?</ion-button>
                     </ion-item>
@@ -81,6 +87,7 @@
                     </ion-card-content>
                 </ion-card>
                
+                <!-- FORM -->
                
                 <form>
                     <ion-item>
@@ -93,9 +100,29 @@
                     </ion-item>
                     <ion-button>Login</ion-button>
                     <ion-button type="reset">Reset</ion-button>
-                </form>
+                </form><br/>
+
+                <!-- CAKE -->
+                <ion-header>
+                  <ion-title>Hvad vil du have?</ion-title>
+                </ion-header>
+                <ion-list>
+                  <ion-item>
+                    <ion-label>Kage</ion-label>
+                    <ion-checkbox slot="end" value="cake" checked></ion-checkbox>
+                  </ion-item>
+                
+                  <ion-item>
+                    <ion-label>Ingen kage</ion-label>
+                    <ion-checkbox slot="end" value="no-cake" disabled></ion-checkbox>
+                  </ion-item>
+                
+                  <ion-item>
+                    <ion-label>Mere kage</ion-label>
+                    <ion-checkbox slot="end" value="more-cake"></ion-checkbox>
+                  </ion-item>
+                </ion-list>
             </ion-content>
-        
         
         </div>
         
@@ -105,8 +132,7 @@
 <script>
     
     fetch('https://dog.ceo/api/breeds/image/random')
-    .then(response => response.json()
-    )
+    .then(response => response.json())
     .then((data) =>{
         console.log(data);
         let dogData = data;
